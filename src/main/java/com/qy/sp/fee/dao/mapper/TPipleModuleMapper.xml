@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qy.sp.fee.dao.impl.PipleModuleDao" >
+  <resultMap id="BaseResultMap" type="com.qy.sp.fee.dto.TPipleModule" >
+    <id column="piple_id" property="pipleId" jdbcType="VARCHAR" />
+    <id column="module_name" property="moduleName" jdbcType="VARCHAR" />
+    <result column="pay_success_http_data_type" property="paySuccessHttpDataType" jdbcType="VARCHAR" />
+    <result column="get_sms_piple_ext_map" property="getSmsPipleExtMap" jdbcType="VARCHAR" />
+    <result column="get_sms_piple_value_map" property="getSmsPipleValueMap" jdbcType="VARCHAR" />
+    <result column="get_sms_piple_value_filter_map" property="getSmsPipleValueFilterMap" jdbcType="VARCHAR" />
+    <result column="get_sms_piple_ext_order_infos" property="getSmsPipleExtOrderInfos" jdbcType="VARCHAR" />
+    <result column="get_sms_result_platform_value_map" property="getSmsResultPlatformValueMap" jdbcType="VARCHAR" />
+    <result column="get_sms_result_platform_value_filter_map" property="getSmsResultPlatformValueFilterMap" jdbcType="VARCHAR" />
+    <result column="get_sms_result_ext_order_infos" property="getSmsResultExtOrderInfos" jdbcType="VARCHAR" />
+    <result column="vertify_piple_ext_map" property="vertifyPipleExtMap" jdbcType="VARCHAR" />
+    <result column="vertify_piple_value_map" property="vertifyPipleValueMap" jdbcType="VARCHAR" />
+    <result column="vertify_piple_value_filter_map" property="vertifyPipleValueFilterMap" jdbcType="VARCHAR" />
+    <result column="vertify_piple_ext_order_infos" property="vertifyPipleExtOrderInfos" jdbcType="VARCHAR" />
+    <result column="vertify_result_platform_value_map" property="vertifyResultPlatformValueMap" jdbcType="VARCHAR" />
+    <result column="vertify_result_platform_value_filter_map" property="vertifyResultPlatformValueFilterMap" jdbcType="VARCHAR" />
+    <result column="vertify_result_ext_order_infos" property="vertifyResultExtOrderInfos" jdbcType="VARCHAR" />
+    <result column="process_success_piple_ext_map" property="processPipleExtMap" jdbcType="VARCHAR" />
+    <result column="process_success_result_platform_value_map" property="processPlatformValueMap" jdbcType="VARCHAR" />
+    <result column="process_success_result_platform_value_filter_map" property="processPlatformValueFilterMap" jdbcType="VARCHAR" />
+    <result column="process_success_ext_order_infos" property="processExtOrderInfos" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    piple_id, module_name, pay_success_http_data_type
+    ,get_sms_piple_ext_map,get_sms_piple_value_map,get_sms_piple_value_filter_map,get_sms_piple_ext_order_infos
+    ,get_sms_result_platform_value_map,get_sms_result_platform_value_filter_map,get_sms_result_ext_order_infos,
+    vertify_piple_ext_map,vertify_piple_value_map,vertify_piple_value_filter_map,get_sms_result_ext_order_infos
+    ,vertify_result_platform_value_map,vertify_result_platform_value_filter_map,vertify_result_ext_order_infos
+    ,process_success_piple_ext_map,process_success_result_platform_value_map,process_success_result_platform_value_filter_map,process_success_ext_order_infos
+    ,status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_piple_module
+    where PIPLE_ID = #{pipleId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAllOpenPipleModule" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_piple_module
+    where status = 1
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_piple_module
+    where PIPLE_ID = #{pipleId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.qy.sp.fee.dto.TPipleModule" >
+    insert into t_piple_module
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pipleId != null" >
+        piple_id,
+      </if>
+      <if test="moduleName != null" >
+        module_name,
+      </if>
+      <if test="paySuccessHttpDataType != null" >
+        pay_success_http_data_type,
+      </if>
+      <if test="getSmsPipleExtMap != null" >
+        get_sms_piple_ext_map,
+      </if>
+      <if test="getSmsPipleValueMap != null" >
+        get_sms_piple_value_map,
+      </if>
+      <if test="getSmsPipleValueFilterMap != null" >
+        get_sms_piple_value_filter_map,
+      </if>
+      <if test="getSmsPipleExtOrderInfos != null" >
+        get_sms_piple_ext_order_infos,
+      </if>
+      <if test="getSmsResultPlatformValueMap != null" >
+        get_sms_result_platform_value_map,
+      </if>
+      <if test="getSmsResultPlatformValueFilterMap != null" >
+        get_sms_result_platform_value_filter_map,
+      </if>
+      <if test="getSmsResultExtOrderInfos != null" >
+        get_sms_result_ext_order_infos,
+      </if>
+      <if test="vertifyPipleExtMap != null" >
+        vertify_piple_ext_map,
+      </if>
+      <if test="vertifyPipleValueMap != null" >
+        vertify_piple_value_map,
+      </if>
+      <if test="vertifyPipleValueFilterMap != null" >
+        vertify_piple_value_filter_map,
+      </if>
+      <if test="vertifyPipleExtOrderInfos != null" >
+        vertify_piple_ext_order_infos,
+      </if>
+      <if test="vertifyResultPlatformValueMap != null" >
+        vertify_result_platform_value_map,
+      </if>
+      <if test="vertifyResultPlatformValueFilterMap != null" >
+        vertify_result_platform_value_filter_map,
+      </if>
+      <if test="vertifyResultExtOrderInfos != null" >
+        vertify_result_ext_order_infos,
+      </if>
+      <if test="processPipleExtMap != null" >
+        process_success_piple_ext_map,
+      </if>
+      <if test="processPlatformValueMap != null" >
+        process_success_result_platform_value_map,
+      </if>
+      <if test="processPlatformValueFilterMap != null" >
+        process_success_result_platform_value_filter_map,
+      </if>
+      <if test="processExtOrderInfos != null" >
+        process_success_ext_order_infos,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pipleId != null" >
+         #{pipleId,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleName != null" >
+        #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="paySuccessHttpDataType != null" >
+        #{paySuccessHttpDataType,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleExtMap != null" >
+       #{getSmsPipleExtMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleValueMap != null" >
+        #{getSmsPipleValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleValueFilterMap != null" >
+        #{getSmsPipleValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleExtOrderInfos != null" >
+        #{getSmsPipleExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsResultPlatformValueMap != null" >
+        #{getSmsResultPlatformValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsResultPlatformValueFilterMap != null" >
+       #{getSmsResultPlatformValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsResultExtOrderInfos != null" >
+       #{getSmsResultExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleExtMap != null" >
+        #{vertifyPipleExtMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleValueMap != null" >
+        #{vertifyPipleValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleValueFilterMap != null" >
+        #{vertifyPipleValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleExtOrderInfos != null" >
+       #{vertifyPipleExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyResultPlatformValueMap != null" >
+        #{vertifyResultPlatformValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyResultPlatformValueFilterMap != null" >
+        #{vertifyResultPlatformValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyResultExtOrderInfos != null" >
+        #{vertifyResultExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="processPipleExtMap != null" >
+        #{processPipleExtMap,jdbcType=VARCHAR},
+      </if>
+      <if test="processPlatformValueMap != null" >
+        #{processPlatformValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="processPlatformValueFilterMap != null" >
+        #{processPlatformValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="processExtOrderInfos != null" >
+       #{processExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qy.sp.fee.dto.TPipleModule" >
+    update t_piple_module
+    <set >
+        <if test="pipleId != null" >
+         piple_id = #{pipleId,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleName != null" >
+       module_name =  #{moduleName,jdbcType=VARCHAR},
+      </if>
+      <if test="paySuccessHttpDataType != null" >
+        pay_success_http_data_type = #{paySuccessHttpDataType,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleExtMap != null" >
+       get_sms_piple_ext_map = #{getSmsPipleExtMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleValueMap != null" >
+        get_sms_piple_value_map = #{getSmsPipleValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleValueFilterMap != null" >
+        get_sms_piple_value_filter_map = #{getSmsPipleValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsPipleExtOrderInfos != null" >
+        get_sms_piple_ext_order_infos = #{getSmsPipleExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsResultPlatformValueMap != null" >
+        get_sms_result_platform_value_map = #{getSmsResultPlatformValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsResultPlatformValueFilterMap != null" >
+       get_sms_result_platform_value_filter_map = #{getSmsResultPlatformValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="getSmsResultExtOrderInfos != null" >
+       get_sms_result_ext_order_infos = #{getSmsResultExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleExtMap != null" >
+        vertify_piple_ext_map = #{vertifyPipleExtMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleValueMap != null" >
+        vertify_piple_value_map = #{vertifyPipleValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleValueFilterMap != null" >
+       vertify_piple_value_filter_map = #{vertifyPipleValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyPipleExtOrderInfos != null" >
+      vertify_piple_ext_order_infos = #{vertifyPipleExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyResultPlatformValueMap != null" >
+       vertify_result_platform_value_map = #{vertifyResultPlatformValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyResultPlatformValueFilterMap != null" >
+        vertify_result_platform_value_filter_map = #{vertifyResultPlatformValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="vertifyResultExtOrderInfos != null" >
+       vertify_result_ext_order_infos =  #{vertifyResultExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="processPipleExtMap != null" >
+        process_success_piple_ext_map = #{processPipleExtMap,jdbcType=VARCHAR},
+      </if>
+      <if test="processPlatformValueMap != null" >
+       process_success_result_platform_value_map =  #{processPlatformValueMap,jdbcType=VARCHAR},
+      </if>
+      <if test="processPlatformValueFilterMap != null" >
+       process_success_result_platform_value_filter_map =  #{processPlatformValueFilterMap,jdbcType=VARCHAR},
+      </if>
+      <if test="processExtOrderInfos != null" >
+       process_success_ext_order_infos = #{processExtOrderInfos,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+       status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PIPLE_ID = #{pipleId,jdbcType=VARCHAR}
+  </update>
+</mapper>
