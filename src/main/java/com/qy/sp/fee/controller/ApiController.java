@@ -9,7 +9,7 @@ public class ApiController {
 
 	@RequestMapping(value = "/apiList")
 	public String apiList() {
-
+System.out.println("api..");
 		return "/apiList";
 	}
 
